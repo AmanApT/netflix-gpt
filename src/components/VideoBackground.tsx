@@ -16,7 +16,7 @@ const VideoBackground: React.FC<createProps> = ({ id }) => {
     <div className="z-50">
       <iframe
         className="w-screen aspect-video"
-        src={`https://www.youtube.com/embed/${movieTrailer.key}?autoplay=1&mute=1`}
+        src={`https://www.youtube.com/embed/${movieTrailer.key}?autoplay=1&mute=1&rel=0`}
         // allow='autoplay'
         allow="autoplay; clipboard-write; encrypted-media; gyroscope; "
         allowFullScreen

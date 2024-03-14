@@ -4,7 +4,7 @@ interface createProps {
 }
 const VideoTitle: React.FC<createProps> = ({ title, overview }) => {
   return (
-    <div className="flex absolute justify-center pl-8 aspect-video w-screen  text-white flex-col gap-2 bg-gradient-to-r from-black">
+    <div className="flex absolute justify-center pl-8 aspect-video  text-white flex-col gap-2 bg-gradient-to-r from-black">
       <h1 className="font-bold  text-6xl">{title}</h1>
       <p className="text-lg py-6 sm:w-1/3">{overview}</p>
       <div className="flex gap-2 bg">
