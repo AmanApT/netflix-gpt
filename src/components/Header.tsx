@@ -1,41 +1,54 @@
-import { signOut } from "firebase/auth";
+import { User, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { addUser, removeUser } from "../utils/userSlice";
+import { AVTAR, LOGO } from "../utils/constants";
 
 interface RootState {
-  user: any; // Replace `any` with the actual type of your user slice state
+  user: User;
 }
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const user = useSelector((store: RootState) => store.user);
 
   const handleSignOut = () => {
     signOut(auth)
-      .then(() => {
-        navigate("/");
-      })
+      .then(() => {})
       .catch(() => {
         navigate("/error");
       });
   };
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => unsub();
+  }, []);
+
   return (
-    <div className="flex justify-between  bg-gradient-to-b from-black">
-      <img
-        className="w-44"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt=""
-      />
+    <div className="flex fixed w-full z-10 justify-between  bg-gradient-to-b from-black">
+      <img className="w-44" src={LOGO} alt="" />
       {user && (
         <div className="flex gap-4 p-2">
           <img
             className="w-10 h-12 bg-gradient-to-b from-black"
-            src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
+            src={AVTAR}
             alt=""
           />
-          <h2>{user.displayName}</h2>
+
           <button onClick={handleSignOut} className="font-bold text-white">
             Sign Out
           </button>

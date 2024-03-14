@@ -7,7 +7,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -15,7 +14,6 @@ const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
@@ -54,16 +52,13 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error);
             });
-          console.log(user);
+          // console.log(user);
         })
         .catch((error) => {
-          //   const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
         });
@@ -72,10 +67,8 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
-          //   const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorMessage);
         });
@@ -83,9 +76,9 @@ const Login = () => {
   };
 
   return (
-    <div className=" bg-login-bg bg-cover ">
+    <div className=" bg-login-bg bg-cover h-[100vh]">
       <Header />
-      <div className="flex flex-col items-center py-20">
+      <div className="flex flex-col items-center p-24">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="lg:w-4/12 flex flex-col bg-black bg-opacity-90 text-white py-6 px-12 rounded-md"
