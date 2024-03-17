@@ -6,10 +6,15 @@ const GptMovieSuggestions = () => {
     (store: RootState) => store.gpt
   );
 
-  if (!movieNames) return null;
+  if (!movieNames) return;
+  <>
+    <div className="bg-black">
+      <h1 className="text-6xl text-white">Ruko bhai data aane do</h1>
+    </div>
+  </>;
 
   return (
-    <div className="bg-black mt-8">
+    <div className="bg-black mt-8 px-8">
       {movieNames.map((eachMovie: string, index) => (
         <MovieList
           key={eachMovie}

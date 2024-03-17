@@ -78,7 +78,7 @@ const Login = () => {
   return (
     <div className=" bg-login-bg bg-cover h-[100vh]">
       <Header />
-      <div className="flex flex-col items-center p-24">
+      <div className="flex flex-col items-center p-36 md:p-24">
         <form
           onSubmit={(e) => e.preventDefault()}
           className="lg:w-4/12 flex flex-col bg-black bg-opacity-90 text-white py-6 px-12 rounded-md"

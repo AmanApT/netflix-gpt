@@ -8,7 +8,6 @@ import { AVTAR, LOGO, SUPPORTED_LANG } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
 import { RootState } from "../utils/appStore";
-// import lang from "../utils/languageConstants";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -49,12 +48,12 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="flex fixed w-full z-50 justify-between  bg-gradient-to-b from-black">
+    <div className="flex fixed bg-black md:bg-transparent pb-2 w-full items-center z-50 md:justify-between md:flex-row flex-col  bg-gradient-to-b from-black">
       <img className="w-44" src={LOGO} alt="" />
       {user && (
-        <div className="flex gap-4 p-3">
+        <div className="flex md:gap-4 md:p-3 ">
           <img
-            className="w-10 h-12 bg-gradient-to-b from-black"
+            className="md:w-10 hidden md:block h-12 bg-gradient-to-b from-black"
             src={AVTAR}
             alt=""
           />
@@ -74,7 +73,7 @@ const Header = () => {
           )}
 
           <button
-            className="bg-black text-white border-red-600 border p-2 rounded-lg "
+            className="bg-black text-white hover:bg-red-900 border-red-600 border md:mr-0 mr-4  p-2 rounded-lg "
             onClick={handleGPTSearch}
           >
             {isGptSearch ? "Home Page" : "GPT Search"}

@@ -13,7 +13,7 @@ const VideoBackground: React.FC<createProps> = ({ id }) => {
   );
 
   return (
-    <div className="z-50">
+    <div className=" relative ">
       <iframe
         className="w-screen aspect-video"
         src={`https://www.youtube.com/embed/${movieTrailer.key}?autoplay=1&mute=1&rel=0`}
