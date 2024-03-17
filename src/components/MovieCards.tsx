@@ -5,12 +5,10 @@ interface CreateProps {
 }
 
 const MovieCards: React.FC<CreateProps> = ({ poster_path }) => {
-  //   console.log(poster_path);
+  if (!poster_path) return null;
 
   return (
-    // <div className="">
     <img className="w-44" src={IMAGE_CDN + poster_path} alt="poster-images" />
-    // </div>
   );
 };
 
